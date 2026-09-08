@@ -35,34 +35,34 @@ export default function Navbar() {
           menuOpen ? "bg-black/95 backdrop-blur-md py-4 text-white" : scrolled ? "glass-light py-4 text-black" : "bg-transparent py-4 xl:py-6 text-white"
         }`}
       >
-        <div className="w-full px-4 md:px-8 lg:px-12 flex justify-between items-center">
-          <Link href="/" className="relative z-50 flex items-center gap-2 xl:gap-4 shrink-0">
+        <div className="w-full px-4 md:px-8 flex justify-between items-center">
+          <Link href="/" className="relative z-50 flex items-center gap-2 shrink-0">
             <Image
               src="/logo.jpg"
               alt="LCOM'LUNETTE Logo"
               width={160}
               height={85}
-              className="rounded-xl border border-gold shadow-[0_0_15px_rgba(255,215,0,0.3)] transition-all duration-500 w-[90px] h-[50px] xl:w-[150px] xl:h-[85px] object-cover"
+              className="rounded-xl border border-gold shadow-[0_0_15px_rgba(255,215,0,0.3)] transition-all duration-500 w-[70px] h-[40px] xl:w-[120px] xl:h-[65px] object-cover"
             />
-            <span className={`font-serif font-bold text-lg xl:text-2xl tracking-widest hidden md:block transition-colors ${menuOpen ? 'text-white' : scrolled ? 'text-black' : 'text-white'}`}>
+            <span className={`font-serif font-bold text-lg xl:text-xl tracking-widest hidden md:block transition-colors ${menuOpen ? 'text-white' : scrolled ? 'text-black' : 'text-white'}`}>
               LCOM'LUNETTE
             </span>
           </Link>
 
           {/* Desktop Nav */}
-          <nav className="hidden lg:flex items-center gap-5 xl:gap-10 shrink-0">
+          <nav className="hidden xl:flex items-center gap-4 2xl:gap-8 shrink-0">
             {navLinks.map((link) => (
               <Link
                 key={link.name}
                 href={link.path}
-                className={`text-xs lg:text-sm xl:text-base uppercase tracking-wider transition-colors font-bold whitespace-nowrap ${scrolled ? 'text-gray-700 hover:text-black' : 'text-gray-300 hover:text-white'}`}
+                className={`text-xs 2xl:text-sm uppercase tracking-wider transition-colors font-bold whitespace-nowrap ${scrolled ? 'text-gray-700 hover:text-black' : 'text-gray-300 hover:text-white'}`}
               >
                 {link.name}
               </Link>
             ))}
             <Link
               href="/contact"
-              className="bg-gold text-black px-5 py-2 lg:px-6 lg:py-2.5 xl:px-8 xl:py-3 rounded-full font-bold hover:bg-white hover:text-black hover:scale-105 transition-all whitespace-nowrap text-sm xl:text-base"
+              className="bg-gold text-black px-5 py-2 2xl:px-8 2xl:py-3 rounded-full font-bold hover:bg-white hover:text-black hover:scale-105 transition-all whitespace-nowrap text-sm"
             >
               Prendre RDV
             </Link>
@@ -70,7 +70,7 @@ export default function Navbar() {
 
           {/* Mobile Menu Toggle */}
           <button
-            className={`lg:hidden relative z-50 transition-colors p-2 ${menuOpen ? 'text-white' : scrolled ? 'text-black' : 'text-white'}`}
+            className={`xl:hidden relative z-50 transition-colors p-2 ${menuOpen ? 'text-white' : scrolled ? 'text-black' : 'text-white'}`}
             onClick={() => setMenuOpen(!menuOpen)}
             aria-label="Toggle Menu"
           >
