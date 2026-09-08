@@ -50,19 +50,19 @@ export default function Navbar() {
           </Link>
 
           {/* Desktop Nav */}
-          <nav className="hidden xl:flex items-center gap-4 2xl:gap-8 shrink-0">
+          <nav className="hidden xl:flex items-center gap-6 xl:gap-8 2xl:gap-12 shrink-0">
             {navLinks.map((link) => (
               <Link
                 key={link.name}
                 href={link.path}
-                className={`text-xs 2xl:text-sm uppercase tracking-wider transition-colors font-bold whitespace-nowrap ${scrolled ? 'text-gray-700 hover:text-black' : 'text-gray-300 hover:text-white'}`}
+                className={`text-sm xl:text-sm 2xl:text-base uppercase tracking-wider transition-colors font-bold whitespace-nowrap ${scrolled ? 'text-gray-700 hover:text-black' : 'text-gray-300 hover:text-white'}`}
               >
                 {link.name}
               </Link>
             ))}
             <Link
               href="/contact"
-              className="bg-gold text-black px-5 py-2 2xl:px-8 2xl:py-3 rounded-full font-bold hover:bg-white hover:text-black hover:scale-105 transition-all whitespace-nowrap text-sm"
+              className="bg-gold text-black px-6 py-2.5 2xl:px-8 2xl:py-3 rounded-full font-bold hover:bg-white hover:text-black hover:scale-105 transition-all whitespace-nowrap text-sm 2xl:text-base"
             >
               Prendre RDV
             </Link>

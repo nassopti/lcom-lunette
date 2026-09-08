@@ -60,7 +60,7 @@ export default function FeaturedCollections({ collections }: { collections: Coll
                   {/* Image Parallax Wrapper */}
                   <motion.div 
                     className="absolute inset-0 w-full h-[120%] -top-[10%]"
-                    style={{ y: index % 2 === 0 ? img1Y : img2Y }}
+                    style={{ y: index % 2 === 0 ? img1Y : img2Y, willChange: "transform" }}
                   >
                     <Image
                       src={collection.image}

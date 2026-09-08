@@ -29,13 +29,13 @@ export default function HeroVideoStyle() {
         
         {/* Background Overlay (Dark Green fading out to reveal white section below conceptually) */}
         <motion.div 
-          style={{ opacity: overlayOpacity }}
+          style={{ opacity: overlayOpacity, willChange: "opacity" }}
           className="absolute inset-0 bg-[#06120b] z-0"
         />
 
         {/* Massive Typography */}
         <motion.div 
-          style={{ opacity: textOpacity, y: textY }}
+          style={{ opacity: textOpacity, y: textY, willChange: "transform, opacity" }}
           className="absolute z-30 flex flex-col items-center text-center pointer-events-none px-4"
         >
           <span className="text-gold tracking-[0.5em] uppercase text-sm font-semibold mb-6 block">
@@ -49,30 +49,26 @@ export default function HeroVideoStyle() {
         </motion.div>
 
         {/* Central Scaling Object (Glasses/Lens) */}
+        {/* L'utilisation de willChange="transform" est critique ici pour un scale x40.
+            L'ombre portée (shadow) et la bordure épaisse ont été remplacées par des versions légères car un scale x40 d'une ombre floue tue les performances GPU sur mobile. */}
         <motion.div 
-          style={{ scale }}
-          className="relative z-20 w-[40vw] h-[40vw] md:w-[25vw] md:h-[25vw] max-w-[400px] max-h-[400px] flex items-center justify-center"
+          style={{ scale, willChange: "transform" }}
+          className="relative z-20 w-[40vw] h-[40vw] md:w-[25vw] md:h-[25vw] max-w-[400px] max-h-[400px] flex items-center justify-center rounded-full overflow-hidden border border-gold/30"
         >
-          {/* We use an image with a clear center (like a lens) to zoom through. 
-              Here we use a high-end luxury glasses image with transparent bg if possible, 
-              or just a stunning circular/floating object. */}
-          <div className="w-full h-full relative rounded-full overflow-hidden border-[10px] border-gold/20 shadow-[0_0_100px_rgba(255,215,0,0.1)]">
-            <Image
-              src="https://images.unsplash.com/photo-1511499767150-a48a237f0083?auto=format&fit=crop&q=80&w=800"
-              alt="Luxury Lens"
-              fill
-              className="object-cover"
-              priority
-            />
-            {/* The "hole" we zoom through - just a stylized overlay */}
-            <div className="absolute inset-0 bg-black/40" />
-            <div className="absolute inset-0 bg-gradient-to-t from-[#06120b] via-transparent to-transparent opacity-90" />
-          </div>
+          <Image
+            src="https://images.unsplash.com/photo-1511499767150-a48a237f0083?auto=format&fit=crop&q=80&w=800"
+            alt="Luxury Lens"
+            fill
+            className="object-cover"
+            priority
+          />
+          <div className="absolute inset-0 bg-black/40" />
+          <div className="absolute inset-0 bg-gradient-to-t from-[#06120b] via-transparent to-transparent opacity-90" />
         </motion.div>
         
         {/* Scroll Indicator */}
         <motion.div
-          style={{ opacity: textOpacity }}
+          style={{ opacity: textOpacity, willChange: "opacity" }}
           className="absolute bottom-10 left-1/2 -translate-x-1/2 z-20 flex flex-col items-center gap-4"
         >
           <span className="text-xs uppercase tracking-[0.3em] text-white/50 font-medium">Découvrir l'Expérience</span>

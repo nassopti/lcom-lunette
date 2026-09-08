@@ -37,7 +37,7 @@ export default function ServicesSection() {
     <section ref={containerRef} className="pt-32 pb-20 relative bg-black/20 backdrop-blur-md text-white border-t-2 border-white/10 overflow-hidden">
       <div className="container mx-auto px-4 md:px-12 relative z-10">
         <motion.div 
-          style={{ y: headerY, opacity: headerOpacity }}
+          style={{ y: headerY, opacity: headerOpacity, willChange: "transform, opacity" }}
           className="mb-24 flex flex-col md:flex-row md:items-end justify-between border-b-2 border-white/10 pb-12"
         >
           <div>
