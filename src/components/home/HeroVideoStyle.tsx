@@ -26,6 +26,9 @@ export default function HeroVideoStyle() {
   
   // Overall background opacity to reveal the next section
   const overlayOpacity = useTransform(smoothProgress, [0.6, 1], [1, 0]);
+  
+  // Opacity for the scroll indicator at the bottom
+  const scrollIndicatorOpacity = useTransform(smoothProgress, [0, 0.2], [1, 0]);
 
   return (
     <section ref={containerRef} className="relative h-[130vh] md:h-[200vh] w-full bg-[#06120b]">
@@ -68,7 +71,7 @@ export default function HeroVideoStyle() {
         
         {/* Scroll Indicator */}
         <motion.div
-          style={{ opacity: textOpacity, willChange: "opacity" }}
+          style={{ opacity: scrollIndicatorOpacity, willChange: "opacity" }}
           className="absolute bottom-10 left-1/2 -translate-x-1/2 z-20 flex flex-col items-center gap-4"
         >
           <span className="text-xs uppercase tracking-[0.3em] text-white/50 font-medium">Découvrir l'Expérience</span>
