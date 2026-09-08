@@ -1,30 +1,43 @@
 "use client";
 
 import { useRef } from "react";
-import { motion, useScroll, useTransform } from "framer-motion";
+import { motion, useScroll, useTransform, useSpring } from "framer-motion";
 import Image from "next/image";
 
 export default function HeroVideoStyle() {
   const containerRef = useRef<HTMLDivElement>(null);
   
-  // Track scroll progress over this section (which is 300vh tall)
+  // Le conteneur est plus petit sur mobile (200vh) pour qu'un seul swipe
+  // suffise presque à parcourir toute la distance, et 300vh sur desktop.
   const { scrollYProgress } = useScroll({
     target: containerRef,
     offset: ["start start", "end end"],
   });
 
+  // Utilisation de useSpring pour "lisser" le scroll. 
+  // Même si l'utilisateur scrolle très vite d'un coup de doigt, 
+  // l'animation prendra son temps (effet "ça se fait tout seul et pas trop vite").
+  const smoothProgress = useSpring(scrollYProgress, {
+    damping: 30,    // Ralentit l'animation (pas trop rapide)
+    stiffness: 40,  // Résistance de l'effet
+    mass: 1
+  });
+
   // Scale the central image massively so the user goes "through" the lens
-  const scale = useTransform(scrollYProgress, [0, 0.8, 1], [1, 25, 40]);
+  const scale = useTransform(smoothProgress, [0, 0.8, 1], [1, 25, 40]);
+  
+  // Effet de Flou à la fin du zoom (blur)
+  const filter = useTransform(smoothProgress, [0.7, 1], ["blur(0px)", "blur(15px)"]);
   
   // Text opacities and positions
-  const textOpacity = useTransform(scrollYProgress, [0, 0.2], [1, 0]);
-  const textY = useTransform(scrollYProgress, [0, 0.2], [0, -50]);
+  const textOpacity = useTransform(smoothProgress, [0, 0.2], [1, 0]);
+  const textY = useTransform(smoothProgress, [0, 0.2], [0, -50]);
   
   // Overall background opacity to reveal the next section
-  const overlayOpacity = useTransform(scrollYProgress, [0.6, 0.9], [1, 0]);
+  const overlayOpacity = useTransform(smoothProgress, [0.6, 0.9], [1, 0]);
 
   return (
-    <section ref={containerRef} className="relative h-[300vh] w-full bg-[#06120b]">
+    <section ref={containerRef} className="relative h-[200vh] md:h-[300vh] w-full bg-[#06120b]">
       <div className="sticky top-0 h-screen w-full overflow-hidden flex items-center justify-center">
         
         {/* Background Overlay (Dark Green fading out to reveal white section below conceptually) */}
@@ -49,10 +62,9 @@ export default function HeroVideoStyle() {
         </motion.div>
 
         {/* Central Scaling Object (Glasses/Lens) */}
-        {/* L'utilisation de willChange="transform" est critique ici pour un scale x40.
-            L'ombre portée (shadow) et la bordure épaisse ont été remplacées par des versions légères car un scale x40 d'une ombre floue tue les performances GPU sur mobile. */}
+        {/* filter ajouté pour le flou à la fin du zoom */}
         <motion.div 
-          style={{ scale, willChange: "transform" }}
+          style={{ scale, filter, willChange: "transform, filter" }}
           className="relative z-20 w-[40vw] h-[40vw] md:w-[25vw] md:h-[25vw] max-w-[400px] max-h-[400px] flex items-center justify-center rounded-full overflow-hidden border border-gold/30"
         >
           <Image
