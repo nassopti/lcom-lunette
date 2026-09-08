@@ -7,50 +7,38 @@ import Image from "next/image";
 export default function HeroVideoStyle() {
   const containerRef = useRef<HTMLDivElement>(null);
   
-  // Le conteneur est plus petit sur mobile (200vh) pour qu'un seul swipe
-  // suffise presque à parcourir toute la distance, et 300vh sur desktop.
+  // Le conteneur est encore plus petit sur mobile (130vh) pour qu'un seul swipe
+  // suffise à parcourir toute la distance, et 200vh sur desktop.
   const { scrollYProgress } = useScroll({
     target: containerRef,
     offset: ["start start", "end end"],
   });
 
-  // Utilisation de useSpring pour "lisser" le scroll. 
-  // Même si l'utilisateur scrolle très vite d'un coup de doigt, 
-  // l'animation prendra son temps (effet "ça se fait tout seul et pas trop vite").
+  // Spring plus vif pour une meilleure fluidité sur un seul coup de doigt
   const smoothProgress = useSpring(scrollYProgress, {
-    damping: 30,    // Ralentit l'animation (pas trop rapide)
-    stiffness: 40,  // Résistance de l'effet
-    mass: 1
+    damping: 20,    
+    stiffness: 60,  
+    mass: 0.8
   });
 
   // Scale the central image massively so the user goes "through" the lens
-  const scale = useTransform(smoothProgress, [0, 0.8, 1], [1, 25, 40]);
-  
-  // Effet de Flou à la fin du zoom (blur)
-  const filter = useTransform(smoothProgress, [0.7, 1], ["blur(0px)", "blur(15px)"]);
-  
-  // Text opacities and positions
-  const textOpacity = useTransform(smoothProgress, [0, 0.2], [1, 0]);
-  const textY = useTransform(smoothProgress, [0, 0.2], [0, -50]);
+  const scale = useTransform(smoothProgress, [0, 1], [1, 40]);
   
   // Overall background opacity to reveal the next section
-  const overlayOpacity = useTransform(smoothProgress, [0.6, 0.9], [1, 0]);
+  const overlayOpacity = useTransform(smoothProgress, [0.6, 1], [1, 0]);
 
   return (
-    <section ref={containerRef} className="relative h-[200vh] md:h-[300vh] w-full bg-[#06120b]">
+    <section ref={containerRef} className="relative h-[130vh] md:h-[200vh] w-full bg-[#06120b]">
       <div className="sticky top-0 h-screen w-full overflow-hidden flex items-center justify-center">
         
-        {/* Background Overlay (Dark Green fading out to reveal white section below conceptually) */}
+        {/* Background Overlay */}
         <motion.div 
           style={{ opacity: overlayOpacity, willChange: "opacity" }}
           className="absolute inset-0 bg-[#06120b] z-0"
         />
 
-        {/* Massive Typography */}
-        <motion.div 
-          style={{ opacity: textOpacity, y: textY, willChange: "transform, opacity" }}
-          className="absolute z-30 flex flex-col items-center text-center pointer-events-none px-4"
-        >
+        {/* Massive Typography - Le texte ne disparait plus au scroll */}
+        <div className="absolute z-30 flex flex-col items-center text-center pointer-events-none px-4">
           <span className="text-gold tracking-[0.5em] uppercase text-sm font-semibold mb-6 block">
             Cabinet d'Exception
           </span>
@@ -59,12 +47,12 @@ export default function HeroVideoStyle() {
             <br />
             <span className="text-gold">SUR-MESURE</span>
           </h1>
-        </motion.div>
+        </div>
 
         {/* Central Scaling Object (Glasses/Lens) */}
-        {/* filter ajouté pour le flou à la fin du zoom */}
+        {/* Le flou (blur) a été retiré, seul le scale subsiste */}
         <motion.div 
-          style={{ scale, filter, willChange: "transform, filter" }}
+          style={{ scale, willChange: "transform" }}
           className="relative z-20 w-[40vw] h-[40vw] md:w-[25vw] md:h-[25vw] max-w-[400px] max-h-[400px] flex items-center justify-center rounded-full overflow-hidden border border-gold/30"
         >
           <Image
