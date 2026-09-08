@@ -1,0 +1,95 @@
+@import "tailwindcss";
+
+:root {
+  --background: #06120b; /* Very dark rich forest green mimicking the video */
+  --foreground: #ffffff;
+  --gold: #FFD700;
+  --gold-muted: rgba(255, 215, 0, 0.4);
+  --section-light: #ffffff;
+  --text-dark: #050505;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-gold: var(--gold);
+  --color-gold-muted: var(--gold-muted);
+  --color-cream: #F9F6F0;
+  --color-cream-dark: #EAE6DF;
+  --font-sans: var(--font-inter);
+  --font-serif: var(--font-playfair);
+}
+
+html {
+  scroll-behavior: initial;
+}
+
+body {
+  background-color: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-sans);
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #000;
+}
+::-webkit-scrollbar-thumb {
+  background: #333;
+  border-radius: 10px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--gold);
+}
+
+::selection {
+  background: var(--gold);
+  color: #000;
+}
+
+/* Brutalist Structural Elements */
+.structural-border {
+  border: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+.structural-border-dark {
+  border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+/* Clean Glassmorphism for Navbar */
+.glass-dark {
+  background: rgba(6, 18, 11, 0.8);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.glass-light {
+  background: rgba(255, 255, 255, 0.9);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+/* Text Reveal Utils */
+.clip-text-reveal {
+  clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%);
+}
+
+.text-gradient {
+  background: linear-gradient(135deg, #FFD700 0%, #F5DEB3 50%, #B8860B 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Hide old backgrounds */
+.global-bg, .noise-overlay {
+  display: none;
+}
