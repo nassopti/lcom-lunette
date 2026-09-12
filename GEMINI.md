@@ -13,6 +13,8 @@ LCOM'LUNETTE est une application web vitrine premium pour un cabinet d'optique h
 Le contenu est intégralement piloté dynamiquement par un CMS headless (Sanity).
 
 ## 2. Toutes les fonctionnalités implémentées
+- **Accueil Vidéo (Hero) :** Arrière-plan vidéo plein écran (16:9 sur desktop, 9:16 sur mobile) en autoplay avec texte animé par Framer Motion, offrant une entrée immersive sans bloquer le scroll.
+- **Service Après-Vente (SAV) :** Section dédiée (glassmorphism) présentant les engagements du cabinet (Entretien à vie, Atelier sur-mesure, Garantie casse).
 - **Catalogue Dynamique :** Affichage des montures avec filtrage avancé (Marque, Sexe, Forme).
 - **Blog (Conseils) :** Affichage d'articles avec estimation du temps de lecture.
 - **Vidéos Immersives :** Galerie vidéo lue dans une modale dédiée sans quitter la page (optimisée pour éviter la surcharge réseau).

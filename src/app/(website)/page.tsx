@@ -1,5 +1,6 @@
 import HeroVideoStyle from "@/components/home/HeroVideoStyle";
 import ServicesSection from "@/components/home/ServicesSection";
+import AfterSalesSection from "@/components/home/AfterSalesSection";
 import FeaturedCollections from "@/components/home/FeaturedCollections";
 import LatestContent from "@/components/home/LatestContent";
 import TestimonialsSection from "@/components/home/TestimonialsSection";
@@ -29,6 +30,7 @@ export default async function Home() {
       <HeroVideoStyle />
       <div className="bg-transparent text-white relative z-20">
         <ServicesSection />
+        <AfterSalesSection />
         <FeaturedCollections collections={mappedCollections.length > 0 ? mappedCollections : [
           { _id: 'demo-1', name: "Demo 1", slug: { current: 'demo-1' }, image: "https://images.unsplash.com/photo-1511499767150-a48a237f0083?auto=format&fit=crop&q=80&w=800", description: "Ajoutez une monture en vedette." },
           { _id: 'demo-2', name: "Demo 2", slug: { current: 'demo-2' }, image: "https://images.unsplash.com/photo-1577803645773-f96470509666?auto=format&fit=crop&q=80&w=800", description: "Ajoutez une monture en vedette." },
