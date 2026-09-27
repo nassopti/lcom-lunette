@@ -1,0 +1,21 @@
+{
+  "name": "LCOM'LUNETTE",
+  "short_name": "LCOM'LUNETTE",
+  "description": "Cabinet d'optique haut de gamme à Abidjan",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#06120b",
+  "theme_color": "#06120b",
+  "icons": [
+    {
+      "src": "/logo.jpg",
+      "sizes": "192x192",
+      "type": "image/jpeg"
+    },
+    {
+      "src": "/logo.jpg",
+      "sizes": "512x512",
+      "type": "image/jpeg"
+    }
+  ]
+}
