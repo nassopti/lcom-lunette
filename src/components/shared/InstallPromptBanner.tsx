@@ -28,9 +28,11 @@ export default function InstallPromptBanner() {
 
     const checkAndShow = () => {
       const consent = localStorage.getItem("cookie_consent");
-      if (consent) {
-        // If cookie consent is given, wait 2 seconds before showing the install prompt to avoid overwhelming the user
-        setTimeout(() => setShowPrompt(true), 2000);
+      const isDebug = window.location.search.includes("debug_install");
+      
+      if (consent || isDebug) {
+        // Reduced to 500ms to be more responsive
+        setTimeout(() => setShowPrompt(true), 500);
       }
     };
 
