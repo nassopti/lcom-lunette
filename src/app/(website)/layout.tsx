@@ -7,7 +7,6 @@ import WowBackground from "@/components/layout/WowBackground";
 import SmoothScroll from "@/components/animations/SmoothScroll";
 import WhatsAppButton from "@/components/ui/WhatsAppButton";
 import CookieBanner from "@/components/shared/CookieBanner";
-import InstallPromptBanner from "@/components/shared/InstallPromptBanner";
 import { Toaster } from "react-hot-toast";
 
 const inter = Inter({
@@ -23,7 +22,6 @@ const playfair = Playfair_Display({
 export const metadata: Metadata = {
   title: "LCOM'LUNETTE | Cabinet d'Optique Haut de Gamme",
   description: "Découvrez l'excellence visuelle avec LCOM'LUNETTE, le cabinet d'optique le plus prestigieux d'Afrique.",
-  manifest: "/manifest.json",
   openGraph: {
     title: "LCOM'LUNETTE | Cabinet d'Optique",
     description: "Découvrez l'excellence visuelle avec LCOM'LUNETTE, le cabinet d'optique le plus prestigieux d'Afrique.",
@@ -72,7 +70,6 @@ export default function RootLayout({
           </div>
           <WhatsAppButton />
           <CookieBanner />
-          <InstallPromptBanner />
         </SmoothScroll>
       </body>
     </html>

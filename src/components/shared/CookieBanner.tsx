@@ -18,13 +18,11 @@ export default function CookieBanner() {
 
   const acceptCookies = () => {
     localStorage.setItem("cookie_consent", "accepted");
-    window.dispatchEvent(new Event('cookie_consent_updated'));
     setShowBanner(false);
   };
 
   const declineCookies = () => {
     localStorage.setItem("cookie_consent", "declined");
-    window.dispatchEvent(new Event('cookie_consent_updated'));
     setShowBanner(false);
   };
 
