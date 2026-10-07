@@ -4,6 +4,7 @@ import "./globals.css";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import WowBackground from "@/components/layout/WowBackground";
+import Optical3DBackground from "@/components/animations/Optical3DBackground";
 import SmoothScroll from "@/components/animations/SmoothScroll";
 import WhatsAppButton from "@/components/ui/WhatsAppButton";
 import CookieBanner from "@/components/shared/CookieBanner";
@@ -54,10 +55,11 @@ export default function RootLayout({
   return (
     <html
       lang="fr"
-      className={`${inter.variable} ${playfair.variable} h-full antialiased`}
+      className={`${inter.variable} ${playfair.variable} antialiased`}
     >
-      <body className="min-h-full flex flex-col font-sans bg-transparent text-white selection:bg-gold selection:text-black">
+      <body className="flex flex-col font-sans bg-transparent text-white selection:bg-gold selection:text-black overflow-x-hidden">
         <WowBackground />
+        <Optical3DBackground />
         
         <SmoothScroll>
           <Toaster position="top-center" toastOptions={{ className: 'z-[9999]' }} />

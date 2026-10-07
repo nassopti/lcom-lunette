@@ -20,7 +20,7 @@ export default async function FrameDetailsPage({ params }: { params: Promise<{ s
   }
 
   return (
-    <main className="min-h-screen pt-32 pb-24 bg-gradient-to-b from-[#06120b] to-[#0a1a12] text-white relative z-20 overflow-hidden">
+    <main className="min-h-screen pt-32 pb-24 bg-black/10 backdrop-blur-md text-white relative z-20 overflow-hidden">
       {/* Background elements */}
       <div className="absolute top-0 left-0 w-full h-[50vh] bg-gold/5 blur-[150px] pointer-events-none" />
       <div className="absolute bottom-0 right-0 w-[50vw] h-[50vw] bg-[#06120b] rounded-full blur-[100px] pointer-events-none" />

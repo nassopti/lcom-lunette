@@ -17,6 +17,7 @@ const formSchema = z.object({
   time: z.string().min(1, "Heure requise"),
   reason: z.string().min(1, "Motif requis"),
   comments: z.string().optional(),
+  consent: z.boolean().refine(val => val === true, { message: "Le consentement est obligatoire" })
 });
 
 export default function ContactClient({ validInsurances }: { validInsurances: string[] }) {
@@ -192,6 +193,14 @@ export default function ContactClient({ validInsurances }: { validInsurances: st
                   <label className="block text-sm text-white/60 mb-2 uppercase tracking-wider">Commentaires</label>
                   <textarea {...register("comments")} rows={4} className="w-full bg-black/40 backdrop-blur-sm border border-white/20 rounded-lg p-3 text-white focus:outline-none focus:border-gold transition-colors"></textarea>
                 </div>
+
+                <div className="flex items-start gap-3 mt-4">
+                  <input type="checkbox" id="consent_contact" {...register("consent")} className="mt-1 accent-gold w-4 h-4 cursor-pointer" />
+                  <label htmlFor="consent_contact" className="text-sm text-white/60 cursor-pointer">
+                    J'accepte que mes données personnelles soient traitées dans le cadre de ma demande de rendez-vous et de la relation commerciale qui peut en découler, conformément à la politique de confidentialité.
+                  </label>
+                </div>
+                {errors.consent && <span className="text-red-500 text-xs block -mt-4">{errors.consent.message}</span>}
 
                 <button 
                   type="submit" 

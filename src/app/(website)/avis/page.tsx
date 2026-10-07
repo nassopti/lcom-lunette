@@ -10,6 +10,7 @@ const formSchema = z.object({
   clientName: z.string().min(2, "Le nom est requis"),
   rating: z.string().min(1, "La note est requise"),
   comment: z.string().min(10, "Le commentaire doit faire au moins 10 caractères"),
+  consent: z.boolean().refine(val => val === true, { message: "Le consentement est obligatoire" })
 });
 
 export default function AvisPage() {
@@ -103,6 +104,14 @@ export default function AvisPage() {
               ></textarea>
               {errors.comment && <span className="text-red-500 text-xs mt-1 block">{errors.comment.message}</span>}
             </div>
+
+            <div className="flex items-start gap-3 mt-4">
+              <input type="checkbox" id="consent_avis" {...register("consent")} className="mt-1 accent-gold w-4 h-4 cursor-pointer" />
+              <label htmlFor="consent_avis" className="text-sm text-white/60 cursor-pointer">
+                J'accepte que mes données soient traitées dans le but de publier cet avis conformément à la politique de confidentialité.
+              </label>
+            </div>
+            {errors.consent && <span className="text-red-500 text-xs block -mt-4">{errors.consent.message}</span>}
 
             <button 
               type="submit" 

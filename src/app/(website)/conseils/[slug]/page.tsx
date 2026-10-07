@@ -25,7 +25,7 @@ export default async function ArticleDetailsPage({ params }: { params: Promise<{
   });
 
   return (
-    <main className="min-h-screen pt-32 pb-32 bg-[#06120b] text-white relative z-20">
+    <main className="min-h-screen pt-32 pb-32 bg-black/10 backdrop-blur-md text-white relative z-20">
       <div className="absolute top-0 left-0 w-full h-[60vh] bg-gold/5 blur-[120px] pointer-events-none" />
 
       <div className="container mx-auto px-6 max-w-4xl relative z-10">
