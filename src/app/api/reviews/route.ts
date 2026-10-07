@@ -38,7 +38,7 @@ export async function POST(req: Request) {
     const validatedData = reviewSchema.safeParse(body);
 
     if (!validatedData.success) {
-      return NextResponse.json({ success: false, error: 'Données invalides', details: validatedData.error.errors }, { status: 400 });
+      return NextResponse.json({ success: false, error: 'Données invalides', details: validatedData.error.issues }, { status: 400 });
     }
 
     if (!process.env.SANITY_API_TOKEN) {
