@@ -26,8 +26,8 @@ export default function Optical3DBackground() {
         className="absolute inset-0 w-full h-full object-cover opacity-100"
         src={videoSrc}
       />
-      {/* Overlay sombre allégé pour que la vidéo ressorte mieux */}
-      <div className="absolute inset-0 bg-black/20 backdrop-blur-[1px]" />
+      {/* Overlay dynamique : l'oeil peut rester légèrement assombri/flou, mais les lentilles seront plus claires */}
+      <div className={`absolute inset-0 ${useEyeVideo ? 'bg-black/20 backdrop-blur-[1px]' : 'bg-black/10'}`} />
     </div>
   );
 }
