@@ -10,9 +10,13 @@ import FrameGalleryClient from "@/components/catalogue/FrameGalleryClient";
 // Forcing dynamic since we are not using getStaticPaths yet
 export const dynamic = "force-dynamic";
 
-export default async function FrameDetailsPage({ params }: { params: Promise<{ slug: string }> }) {
-  // Await params in Next.js 15
-  const slug = (await params).slug;
+type Props = {
+  params: Promise<{ slug: string }>;
+};
+
+export default async function FrameDetailsPage(props: Props) {
+  const params = await props.params;
+  const slug = params.slug;
   const frame = await client.fetch(FRAME_BY_SLUG_QUERY, { slug });
 
   if (!frame) {

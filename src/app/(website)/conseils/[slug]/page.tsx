@@ -9,8 +9,13 @@ import { PortableText } from "@portabletext/react";
 
 export const dynamic = "force-dynamic";
 
-export default async function ArticleDetailsPage({ params }: { params: Promise<{ slug: string }> }) {
-  const slug = (await params).slug;
+type Props = {
+  params: Promise<{ slug: string }>;
+};
+
+export default async function ArticleDetailsPage(props: Props) {
+  const params = await props.params;
+  const slug = params.slug;
   const article = await client.fetch(ARTICLE_BY_SLUG_QUERY, { slug });
 
   if (!article) {
