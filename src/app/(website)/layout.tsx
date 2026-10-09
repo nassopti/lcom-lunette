@@ -58,7 +58,6 @@ export default function RootLayout({
       className={`${inter.variable} ${playfair.variable} antialiased`}
     >
       <body className="flex flex-col font-sans bg-transparent text-white selection:bg-gold selection:text-black overflow-x-hidden">
-        <WowBackground />
         <Optical3DBackground />
         
         <SmoothScroll>
